@@ -1,0 +1,31 @@
+{
+  "name": "wildlife",
+  "version": "0.0.1",
+  "description": "BCW Capstone Project, Summer 2016",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "wildlife",
+    "birding",
+    "trails",
+    "hiking",
+    "boise",
+    "idaho",
+    "pokemon IRL"
+  ],
+  "author": "Lindy Crain, Emily Davis, Kurt Hammes, Davis Plumlee",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "cors": "^2.7.1",
+    "express": "^4.14.0",
+    "firebase": "^2.4.2",
+    "js-data": "^2.9.0",
+    "js-data-firebase": "^2.1.1",
+    "js-data-nedb": "^1.0.0",
+    "js-data-schema": "^1.2.5",
+    "node-uuid": "^1.4.7"
+  }  
+}
