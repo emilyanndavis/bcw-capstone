@@ -6,6 +6,7 @@
         DS = dataAdapter.DS;
 
     let Species = require('./species-model').Species;
+    let Location = require('./location-model').Location;
 
     let Sighting = DS.defineResource({
         name: 'sighting',
@@ -15,7 +16,11 @@
             hasMany: {
                 species: {
                     localField: 'species',
-                    localKeys: 'speciesId'
+                    localKey: 'speciesId'
+                },
+                location: {
+                    localField: 'location',
+                    localKey: 'locationId'
                 }
             }
         }
@@ -23,8 +28,8 @@
 
     schemator.defineSchema('Sighting', {
         id: {type: 'string', nullable: false},
-        date: {type: 'string', nullable: false},
-        location: {type: 'string', nullable: false},
+        date: {type: 'number', nullable: false},
+        locationId: {type: 'string', nullable: false},
         speciesId: {type: 'string', nullable: false}
     });
 
@@ -48,11 +53,11 @@
         Sighting.find(id, options).then(cb);
     }
 
-    function createSighting(date, location, speciesId, cb){
+    function createSighting(locationId, speciesId, cb){
         let sighting = {
             id: uuid.v1(),
-            date: date,
-            location: location,
+            date: Date.now(),
+            locationId: locationId,
             speciesId: speciesId
         };
         let error = schemator.validateSync('Sighting', sighting);
@@ -62,12 +67,17 @@
         Sighting.create(sighting).then(cb);             
     }
 
-    function logSighting(sightingId, speciesId, cb){
+    function logSighting(sightingId, cb){
         Sighting.find(sightingId).then(function(sighting){
-            Species.find(speciesId).then(function(species){
+            Species.find(sighting.speciesId).then(function(species){
                 species.sightingIds[sightingId] = sightingId;
-                Species.update(speciesId, species).then(function(obs){
-                    return cb(obs);
+                Location.find(sighting.locationId).then(function(location){
+                    location.sightingIds[sightingId] = sightingId;
+                    Species.update(sighting.speciesId, species).then(function(obs){
+                        Location.update(sighting.locationId, location).then(function(){
+                            return cb(obs);
+                        });
+                    });
                 });
             });
         });

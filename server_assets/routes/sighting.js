@@ -18,8 +18,8 @@
             }
         })
         .post(function(req, res){
-            Sighting.create(req.body.date, req.body.location, req.body.speciesId, function(sighting){
-                Sighting.log(sighting.id, sighting.speciesId, function(loggedSighting){
+            Sighting.create(req.body.locationId, req.body.speciesId, function(sighting){
+                Sighting.log(sighting.id, function(loggedSighting){
                     res.send(loggedSighting);
                 });
             });
@@ -30,12 +30,5 @@
         .delete(function(req, res){
             return {error: 'You cannot delete a sighting at this time.'};
         });
-
-    // router.route('/sightings/:sightingId/:speciesId')
-    //     .post(function(req, res){
-    //         Sighting.logSighting(req.params.sightingId, req.params.speciesId, function(sighting){
-    //             res.send(sighting);
-    //         });
-    //     });
         
     }());
