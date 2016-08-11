@@ -21,7 +21,6 @@
             Species.create(req.body.commonName, function(species){
                 res.send(species);
             });
-            // return {error: 'Cannot create a species at this time. Please try again later.'};                        
         })
         .put(function(req, res){
             return {error: 'You cannot update a species at this time. Nice try, Darwin.'};            
@@ -29,4 +28,5 @@
         .delete(function(req, res){
             return {error: 'You cannot delete a species. What are you, a monster?'};
         })
+
     }());

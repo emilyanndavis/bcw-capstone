@@ -62,17 +62,12 @@
         }
         Species.create(species).then(cb);        
     }
-
-    function logSighting(speciesId){
-        // create new sighting object
-        // add sightingId to this species's list of sightingIds
-    }
     
     module.exports = {
         getAll: getAll,
         getById: getById,
         create: createSpecies,
-        logSighting: logSighting
+        Species: Species
     };
 
 }());
