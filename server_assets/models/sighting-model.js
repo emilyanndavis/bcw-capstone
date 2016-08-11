@@ -11,7 +11,6 @@
     let Sighting = DS.defineResource({
         name: 'sighting',
         endpoint: 'sightings',
-        filepath: __dirname + '/../data/sightings.db',
         relations: {
             hasMany: {
                 species: {
@@ -67,20 +66,27 @@
         Sighting.create(sighting).then(cb);             
     }
 
+    function handleError(err){
+        console.log(err);
+    }
+
     function logSighting(sightingId, cb){
+
         Sighting.find(sightingId).then(function(sighting){
             Species.find(sighting.speciesId).then(function(species){
+                species.sightingIds = species.sightingIds || {};
                 species.sightingIds[sightingId] = sightingId;
                 Location.find(sighting.locationId).then(function(location){
-                    location.sightingIds[sightingId] = sightingId;
+                    location.sightingIds = location.sightingIds || {};
+                    location.sightingIds[sightingId] = sightingId;                 
                     Species.update(sighting.speciesId, species).then(function(obs){
                         Location.update(sighting.locationId, location).then(function(){
                             return cb(obs);
                         });
                     });
-                });
-            });
-        });
+                }, handleError);
+            },handleError);
+        }, handleError);
     }    
     
     module.exports = {

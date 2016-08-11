@@ -8,7 +8,6 @@
     let Location = DS.defineResource({
         name: 'location',
         endpoint: 'location',
-        filepath: __dirname + '/../data/locations.db',
         relations: {
             hasMany: {
                 sighting: {
@@ -47,8 +46,7 @@
     function createLocation(name, cb){
         let location = {
             id: uuid.v1(),
-            name: name,
-            sightingIds: {}
+            name: name
         };
         let error = schemator.validateSync('Location', location);
         if (error){

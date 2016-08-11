@@ -8,7 +8,6 @@
     let Species = DS.defineResource({
         name: 'species',
         endpoint: 'species',
-        filepath: __dirname + '/../data/species.db',
         relations: {
             hasMany: {
                 sighting: {
@@ -28,6 +27,7 @@
         threats: {type: 'string', nullable: true},
         description: {type: 'string', nullable: true},
         imageUrl: {type: 'string', nullable: true}
+        // TODO: add 'type' or 'class' property(ies), (e.g., mammal, bird, reptile / rodent, songbird, snake, etc.)
     });
 
     function parseQuery(query){
@@ -53,8 +53,7 @@
     function createSpecies(name, cb){
         let species = {
             id: uuid.v1(),
-            commonName: name,
-            sightingIds: {}
+            commonName: name
         };
         let error = schemator.validateSync('Species', species);
         if (error){
