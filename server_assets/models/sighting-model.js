@@ -71,7 +71,6 @@
     }
 
     function logSighting(sightingId, cb){
-
         Sighting.find(sightingId).then(function(sighting){
             Species.find(sighting.speciesId).then(function(species){
                 species.sightingIds = species.sightingIds || {};

@@ -1,0 +1,40 @@
+<!--<h2>Squeak squeaker squeak squeaken.</h2>
+<button ng-click="$ctrl.getSpecies()">Click me!</button>-->
+<div>
+    <h2 class="text-center">Add a species</h2>
+    <form ng-submit="$ctrl.addSpecies()">
+        <div class="form-group">
+            <label>Common Name</label>
+            <input type="text" class="form-control" ng-model="$ctrl.species.commonName" required />
+        </div>
+        <div class="form-group"> 
+            <label>Scientific Name</label>
+            <input type="text" class="form-control" ng-model="$ctrl.species.scientificName" required />
+        </div>
+        <div class="form-group">
+            <label>Category (e.g., Bird, Mammal, Reptile, Bug)</label>
+            <input type="text" class="form-control" ng-model="$ctrl.species.category" required />    
+        </div>
+        <div class="form-group">
+            <label>Size (i.e., Small, Medium, or Large)</label>
+            <input type="text" class="form-control" ng-model="$ctrl.species.size" required />
+        </div>
+        <div class="form-group">
+            <label>State Conservation Status (e.g., Secure, Vulnerable, Imperiled)</label>
+            <input type="text" class="form-control" ng-model="$ctrl.species.conservationStatus" required />        
+        </div>
+        <div class="form-group">
+            <input type="checkbox" ng-model="$ctrl.species.stateProtected" />        
+            <label>State Protected (check if true)</label>
+        </div>
+        <div class="form-group">
+            <label>Description</label>
+            <textarea type="text" class="form-control" ng-model="$ctrl.species.description" required></textarea>        
+        </div>
+        <div class="form-group">
+            <label>Image URL</label>
+            <input type="text" class="form-control" ng-model="$ctrl.species.imageUrl" required />        
+        </div>
+        <button class="btn btn-lg btn-primary" type="submit">Add to Firebase!</button>
+    </form>
+</div>

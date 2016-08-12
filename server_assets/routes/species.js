@@ -18,7 +18,7 @@
             }
         })
         .post(function(req, res){
-            Species.create(req.body.commonName, function(species){
+            Species.create(req.body.commonName, req.body.scientificName, req.body.category, req.body.size, req.body.conservationStatus, req.body.stateProtected, req.body.description, req.body.imageUrl, function(species){
                 res.send(species);
             });
         })

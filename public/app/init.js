@@ -3,19 +3,29 @@
     angular.module('wildlife', [])
         .component('wildlife', {
             controller: WildlifeController,
-            template: `
-                <h2>Squeak squeaker squeak squeaken.</h2>
-                <button ng-click="$ctrl.getSpecies()">Click me!</button>
-                `
+            templateUrl: 'app/wildlife.html'
         });
 
-        function WildlifeController(){
+        function WildlifeController($http){
             let $ctrl = this;
 
             $ctrl.getSpecies = function(){
-                console.log('Species coming soon. Check back later!')
+                console.log('Species coming soon. Check back later!');
             }
 
+            $ctrl.species = {};
+            $ctrl.species.stateProtected = false;
+
+            $ctrl.addSpecies = function(){
+                console.log('Creating species...');
+                console.log($ctrl.species);
+                $http.post('/api/species', $ctrl.species).then(function(res){
+                    console.log(res.data);
+                    $ctrl.species = {};
+                    $ctrl.species.stateProtected = false;
+                    console.log('Species created!');
+                });
+            }
         }
 
 }());

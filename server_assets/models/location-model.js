@@ -7,7 +7,7 @@
 
     let Location = DS.defineResource({
         name: 'location',
-        endpoint: 'location',
+        endpoint: 'locations',
         relations: {
             hasMany: {
                 sighting: {
