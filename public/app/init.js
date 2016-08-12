@@ -10,7 +10,10 @@
             let $ctrl = this;
 
             $ctrl.getSpecies = function(){
-                console.log('Species coming soon. Check back later!');
+                $http.get('/api/species').then(function(res){
+                    console.log('Number of species in DB: ' + res.data.length);
+                });
+                // console.log('Species coming soon. Check back later!');
             }
 
             $ctrl.species = {};

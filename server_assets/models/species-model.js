@@ -73,6 +73,45 @@
         Species.find(id, options).then(cb);
     }
 
+    function getByName(name, query, cb){
+        options = parseQuery(query);
+        Species.findAll({}, options).then(function(speciesList){
+            var matches = [];
+            for (var species in speciesList){
+                if (species.commonName.includes(name) || species.scientificName.includes(name)){
+                    matches.push(species);
+                    cb(matches);
+                }
+            }
+        });
+    }
+
+    function getByCategory(animalType, query, cb){
+        options = parseQuery(query);
+        Species.findAll({}, options).then(function(speciesList){
+            var matches = [];
+            for (var species in speciesList){
+                if (species.category == animalType){
+                    matches.push(species);
+                    cb(matches);
+                }
+            }
+        });
+    }
+
+    function getBySize(animalSize, query, cb){
+        options = parseQuery(query);
+        Species.findAll({}, options).then(function(speciesList){
+            var matches = [];
+            for (var species in speciesList){
+                if (species.size == animalSize){
+                    matches.push(species);
+                    cb(matches);
+                }
+            }
+        });
+    }
+
     function createSpecies(commonName, scientificName, category, size, conservationStatus, stateProtected, description, imageUrl, cb){
         let species = {
             id: uuid.v1(),
