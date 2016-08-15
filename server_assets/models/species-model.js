@@ -73,42 +73,42 @@
         Species.find(id, options).then(cb);
     }
 
-    function getByName(name, query, cb){
-        options = parseQuery(query);
-        Species.findAll({}, options).then(function(speciesList){
+    function getByName(name, cb){
+        Species.findAll().then(function(speciesList){
             var matches = [];
-            for (var species in speciesList){
-                if (species.commonName.includes(name) || species.scientificName.includes(name)){
+            speciesList.forEach(function(species){
+                if (species.commonName.toLowerCase().includes(name.toLowerCase()) || species.scientificName.toLowerCase().includes(name.toLowerCase())){
                     matches.push(species);
-                    cb(matches);
                 }
-            }
+            });
+            console.log('Number of matches for ' + name + ': ' + matches.length);
+            cb(matches);
         });
-    }
+    }    
 
-    function getByCategory(animalType, query, cb){
-        options = parseQuery(query);
-        Species.findAll({}, options).then(function(speciesList){
+    function getByCategory(animalType, cb){
+        Species.findAll().then(function(speciesList){
             var matches = [];
-            for (var species in speciesList){
-                if (species.category == animalType){
+            speciesList.forEach(function(species){
+                if (species.category.toLowerCase() == animalType.toLowerCase()){
                     matches.push(species);
-                    cb(matches);
                 }
-            }
+            });
+            console.log('Number of ' + animalType + ': ' + matches.length);
+            cb(matches);
         });
-    }
+    }    
 
-    function getBySize(animalSize, query, cb){
-        options = parseQuery(query);
-        Species.findAll({}, options).then(function(speciesList){
+    function getBySize(animalSize, cb){
+        Species.findAll().then(function(speciesList){
             var matches = [];
-            for (var species in speciesList){
-                if (species.size == animalSize){
+            speciesList.forEach(function(species){
+                if (species.size.toLowerCase() == animalSize.toLowerCase()){
                     matches.push(species);
-                    cb(matches);
                 }
-            }
+            });
+            console.log('Number of ' + animalSize + ': ' + matches.length);
+            cb(matches);
         });
     }
 
@@ -141,6 +141,9 @@
     module.exports = {
         getAll: getAll,
         getById: getById,
+        getByName: getByName,
+        getByCategory: getByCategory,
+        getBySize: getBySize,
         create: createSpecies,
         Species: Species
     };
