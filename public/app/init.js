@@ -33,10 +33,33 @@
                         url: '/logBook/:id',
                         component: 'logBookComponent'
                     })
-				
-            
+
+                .state('sighting', {
+                    url: '/sighting',
+                    component: 'sightingComponent'
+                })
+                    .state('sighting.search', {
+                        url: '/sighting/search',
+                        component: 'sightingComponent'
+                    })                
+                    .state('sighting.filter', {
+                        url: '/sighting/filter',
+                        component: 'sightingComponent'
+                    })   
+                    .state('sighting.results', {
+                        url: '/sighting/results',
+                        component: 'sightingComponent'
+                    }) 
+                    .state('sighting.logIt', {
+                        url: '/sighting/logIt',
+                        component: 'sightingComponent'
+                    }) 
+
 		})
 
+
+
+// WILDLIFE COMPONENT: just an html form used to initially populate the species database
         .component('wildlife', {
             controller: WildlifeController,
             templateUrl: 'app/wildlife.html'
@@ -66,6 +89,7 @@
                 });
             }
         }
+// END WILDLIFE COMPONENT        
 
         
 

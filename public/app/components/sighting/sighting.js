@@ -1,7 +1,7 @@
 ;(function(){
 
     angular.module('wildlife')
-        .component('sighting', {
+        .component('sightingComponent', {
             controller: SightingController,
             templateUrl: 'app/components/sighting/sighting.html'
         });
@@ -14,6 +14,7 @@
             $ctrl.initializing = true;
             $ctrl.searching = false;
             $ctrl.filtering = false;
+            $ctrl.results = [];
 
             $ctrl.search = function(){
                 let baseUrl = 'api/species/name/'
@@ -21,6 +22,7 @@
                     console.log(res.data.length);
                     res.data.forEach(function(match){
                         console.log(match.commonName);
+                        $ctrl.results.push(match);
                     });
                 });
                 $ctrl.query = '';
@@ -43,6 +45,7 @@
                     console.log(`Number of matches for ${size} ${type}s: ${sizeMatches.length}`);
                     sizeMatches.forEach(function(species){
                         console.log(species.commonName);
+                        $ctrl.results.push(species);    
                     });
                 });
                 $ctrl.animalType = '';                
