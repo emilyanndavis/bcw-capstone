@@ -1,5 +1,5 @@
 ; (function () {
-    debugger;
+
     angular.module('wildlife')
         .component('mapComponent', {
             template: `<div id="map"></div>`,

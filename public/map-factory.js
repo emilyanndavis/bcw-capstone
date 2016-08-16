@@ -1,5 +1,5 @@
 ; (function () {
-debugger;
+
 angular.module('wildlife')
     .factory('Initializer', function($window, $q){
 
