@@ -14,7 +14,7 @@
     </form>
 </div>
 
-<div ng-if="$ctrl.filtering">
+<div ng-if="$ctrl.filtering && $ctrl.results.length === 0">
     <div ng-if="$ctrl.showingTypes">
         <h2>Let's see if we can find it in the fieldguide.</h2>
         <h3>What type of animal is it?</h3>
@@ -43,5 +43,9 @@
             <button ng-click="$ctrl.filter()">Go!</button>
         </form>
     </div>
+</div>
+
+<div ng-if="$ctrl.results.length !== 0" ng-repeat="animal in $ctrl.results">
+    <animal-component animal="animal"></animal-component>
 </div>
 
