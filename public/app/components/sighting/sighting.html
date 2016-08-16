@@ -1,0 +1,47 @@
+<h1>Log a Sighting</h1>
+
+<div ng-if="$ctrl.initializing">
+    <h2>Already know what you found?</h2>
+    <button class="btn btn-info" ng-click="$ctrl.searching = !$ctrl.searching; $ctrl.initializing = !$ctrl.initializing">I think so! Let me search for it.</button>
+    <button class="btn btn-info" ng-click="$ctrl.filtering = !$ctrl.filtering; $ctrl.showingTypes = true; $ctrl.initializing = !$ctrl.initializing">Nope. Help me find it.</button>
+</div>
+
+<div ng-if="$ctrl.searching">
+    <h2>Search by animal name:</h2>
+    <form>
+        <input type="text" placeholder="ex.: squirrel" ng-model="$ctrl.query" />
+        <button ng-click="$ctrl.search(); $ctrl.searching = false">Sriracha!</button>
+    </form>
+</div>
+
+<div ng-if="$ctrl.filtering">
+    <div ng-if="$ctrl.showingTypes">
+        <h2>Let's see if we can find it in the fieldguide.</h2>
+        <h3>What type of animal is it?</h3>
+        <form>
+            <select ng-model="$ctrl.animalType">
+                <!--<option value="" disabled>Select animal type</option>-->
+                <option value="amphibian">Amphibian</option>
+                <option value="bird">Bird</option>
+                <option value="bug">Bug</option>
+                <option value="mammal">Mammal</option>
+                <option value="reptile">Reptile</option>
+            </select>
+            <button ng-click="$ctrl.showingSizes = true">Go!</button>
+        </form>
+    </div>
+    <div ng-if="$ctrl.showingSizes">
+        <h2>Ok. Let's narrow down the list a bit more.</h2>
+        <h3>What size animal is it?</h3>
+        <form>
+            <select ng-model="$ctrl.animalSize">
+                <!--<option value="" disabled>Select animal type</option>-->
+                <option value="small">Small</option>
+                <option value="medium">Medium</option>
+                <option value="large">Large</option>
+            </select>
+            <button ng-click="$ctrl.filter()">Go!</button>
+        </form>
+    </div>
+</div>
+
