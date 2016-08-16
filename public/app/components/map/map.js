@@ -1,27 +1,27 @@
 ; (function () {
-
+    debugger;
     angular.module('wildlife')
         .component('mapComponent', {
-            template: '<div id ="map"></div>',
-            controller: MapController,
+            template: `<div id="map"></div>`,
+            controller: MapController
         });
 
-    function MapController() {
-            $ctrl = this;
 
-        var map;
-        $ctrl.initMap = function () {
+    MapController.$inject = ['Initializer']
+    function MapController(Initializer) {
+        var $ctrl = this;
 
-            var largeInfowindow = new google.maps.InfoWindow();
-
-            map = new google.maps.Map(document.getElementById('map'), {
-                center: { lat: 43.639056, lng: -116.195673 },
-                zoom: 17,
-                // styles: styles,
-                mapTypeControl: false
-            });
-            var infoWindow = new google.maps.InfoWindow({ map: map });
-            if (navigator.geolocation) {
+        Initializer.mapsInitialized.
+            then(function () {
+                var largeInfowindow = new google.maps.InfoWindow();
+                map = new google.maps.Map(document.getElementById('map'), {
+                    center: { lat: 43.639056, lng: -116.195673 },
+                    zoom: 17,
+                    // styles: styles,
+                    mapTypeControl: false
+                });
+                var infoWindow = new google.maps.InfoWindow({ map: map });
+                if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(function (position) {
                     var pos = {
                         lat: position.coords.latitude,
@@ -45,14 +45,15 @@
                 handleLocationError(false, infoWindow, map.getCenter());
             }
 
-
-
-        }
-        function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+            });
+            
+            function handleLocationError(browserHasGeolocation, infoWindow, pos) {
             infoWindow.setPosition(pos);
             infoWindow.setContent(browserHasGeolocation ?
                 'Error: The Geolocation service failed.' :
                 'Error: Your browser doesn\'t support geolocation.');
         }
+
     }
+
 } ());
