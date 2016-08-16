@@ -9,6 +9,14 @@
     text-align: center;
 }
 
+.wildlife-card h3 {
+    font-weight: bold;
+}
+
+.wildlife-card h4 {
+    font-style: italic;
+}
+
 .modal-img {
     height: 200px;
     width: 100%;
