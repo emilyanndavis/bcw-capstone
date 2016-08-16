@@ -3,8 +3,9 @@
   angular.module('wildlife')
     .service('WildlifeService', WildlifeService)
 
+WildlifeService.$inject['$http'];
 
-    function WildlifeService() {
+    function WildlifeService($http) {
       var ws = this;
 
 
@@ -19,9 +20,9 @@
       var speciesList = db.ref('/species');
     
 
-    function getWildlife(cb) {
-        ws.get(speciesList).then(function (res) {
-            cb(res.val());
+    function getWildlife() {
+        $http.get(speciesList).then(function (res) {
+            
         })
     }
 
