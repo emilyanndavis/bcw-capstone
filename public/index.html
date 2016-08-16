@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="wildlife">
+
 <head>
     <meta charset="UTF-8">
     <title>Pokemon IRL</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <div class="container">
         <!--<h1>Populating the foothills. Please stand by.</h1>          -->
@@ -13,9 +15,17 @@
         <fieldguide-component></fieldguide-component>
     </div>
 
+    <!--comment out container div and uncomment map-component to veiw-->
+    
+    <!--<map-component></map-component>-->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.0-beta.1/angular-ui-router.min.js"></script>
     <script src="app/init.js"></script>
     <script src="app/components/fieldguide/fieldguide.js"></script>
     <script src="app/components/animal/animal.js"></script>
+    <script src="app/components/map/map.js">
+     <script async defer src="https://maps.googleapis.com/maps/api/js?libraries=geometry,drawing&key=AIzaSyBYGiQ2yoXxY6DleZHtxei0XSBqEABqOn8&v=3&callback=$ctrl.initMap"></script>
+
 </body>
+
 </html>

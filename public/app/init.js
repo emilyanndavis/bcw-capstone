@@ -1,6 +1,42 @@
 ;(function(){
 
-    angular.module('wildlife', [])
+    angular.module('wildlife', ['ui.router'])
+    
+        //ROUTING CONFIG
+        .config(function ($stateProvider, $urlRouterProvider) {
+
+            $urlRouterProvider.otherwise('/');
+
+            $stateProvider
+                .state('home', {
+                    url: '/',
+                    component: 'wildlife'
+                })
+                .state('map', {
+                    url: '/map',
+                    component: 'mapComponent'
+                })
+                .state('fieldGuide', {
+                    url: '/fieldGuide',
+                    component: 'fieldGuideComponent'
+                })
+                    .state('fieldGuide.detail', {
+                        url: '/fieldGuide/:id',
+                        component: 'fieldGuideComponent'
+                    })
+
+                .state('logBook', {
+                    url: '/logBook',
+                    component: 'logBookComponent'
+                })
+                    .state('logBook.detail', {
+                        url: '/logBook/:id',
+                        component: 'logBookComponent'
+                    })
+				
+            
+		})
+
         .component('wildlife', {
             controller: WildlifeController,
             templateUrl: 'app/wildlife.html'
@@ -30,5 +66,7 @@
                 });
             }
         }
+
+        
 
 }());
