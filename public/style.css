@@ -10,8 +10,8 @@
 }
 
 .unlogged-wildlife-card {
-    background-image: url("placeholder.png");
-    border: 1px solid black;
+    background-image: url("images/placeholder.png");
+    border: 1px solid black; 
     display: inline-block;
     height: 350px;
     width: 200px;
