@@ -4,10 +4,7 @@
     .component('fieldguideComponent', {
       templateUrl: 'app/components/fieldguide/fieldguide.html',
       controller: FieldguideController,
-      controllerAs: 'fc',
-    //   bindings: {
-    //       fieldguide: '<'
-    //   }
+      controllerAs: 'fc'
     })
 
     FieldguideController.$inject = ["$http"]
@@ -16,17 +13,14 @@
       var fc = this;
       fc.fieldguide = [];
 
-      fc.getWildlife = function(){
-          $http.get("api/species").then(function(res){
+    fc.$onInit = function() {
+            $http.get("api/species").then(function(res){
               console.log(res.data); 
               res.data.forEach(function(species){
                   fc.fieldguide.push(species);
               })
           })
       }
-
-
-       
     }
 
 }())

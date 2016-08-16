@@ -1,7 +1,8 @@
-<button ng-click="ac.viewAnimal(ac.animal.id)">View Animal</button>
-        <img src="{{ac.animal.imageUrl}}">
+    <div>
+        <img class="modal-img" src="{{ac.animal.imageUrl}}" ng-click="ac.viewAnimal(ac.animal.id)">
         <h3>{{ac.animal.commonName}}</h3>
         <h4>{{ac.animal.scientificName}}</h4>
+    </div>
 
 
 
@@ -9,12 +10,11 @@
         <div class="modal-content">
             <span class="closebtn" ng-click="ac.closeModal()">&times</span>
             <img src="{{ac.animal.imageUrl}}">
-            <h3>{{ac.animal.commonName}}</h3>
-            <h4>{{ac.animal.scientificName}}</h4>
+            <h3 style="font-weight: bold">{{ac.animal.commonName}}</h3>
+            <h4 style="font-style: italic">{{ac.animal.scientificName}}</h4>
             <h5>{{ac.animal.category}}</h4>
             <h5>{{ac.animal.size}}</h4>
             <h5>{{ac.animal.conservationStatus}}</h5>
-            <!--<h5>{{ac.animal.stateProtected}}</h5>-->
             <p>{{ac.animal.description}}</p>
         </div>
 </div>
