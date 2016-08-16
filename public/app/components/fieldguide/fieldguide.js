@@ -13,7 +13,7 @@
       var fc = this;
       fc.fieldguide = [];
 
-    fc.$onInit = function() {
+      fc.$onInit = function() {
             $http.get("api/species").then(function(res){
               console.log(res.data); 
               res.data.forEach(function(species){
