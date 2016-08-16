@@ -4,7 +4,10 @@
     .component('fieldguideComponent', {
       templateUrl: 'app/components/fieldguide/fieldguide.html',
       controller: FieldguideController,
-      controllerAs: 'fc'
+      controllerAs: 'fc',
+      bindings: {
+        logging: '<'
+      }
     })
 
     FieldguideController.$inject = ["$http"]

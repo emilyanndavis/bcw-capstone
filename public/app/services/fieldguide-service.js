@@ -3,7 +3,11 @@
   angular.module('wildlife')
     .service('WildlifeService', WildlifeService)
 
+<<<<<<< HEAD
     WildlifeService.$inject = ['$http']
+=======
+WildlifeService.$inject['$http'];
+>>>>>>> fefe9ad394253c0d8eafe621e1f8eac44c4c2b15
 
     function WildlifeService($http) {
       var ws = this;
@@ -43,11 +47,19 @@
     //   var speciesList = db.ref('/species');
     
 
+<<<<<<< HEAD
     // function getWildlife(cb) {
     //     ws.get(speciesList).then(function (res) {
     //         cb(res.val());
     //     })
     // }
+=======
+    function getWildlife() {
+        $http.get(speciesList).then(function (res) {
+            
+        })
+    }
+>>>>>>> fefe9ad394253c0d8eafe621e1f8eac44c4c2b15
 
     }
 
