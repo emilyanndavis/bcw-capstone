@@ -55,6 +55,12 @@
     font-size: 30px;
     font-weight: bold;
 }
+
+.logbtn {
+    display: block;
+    margin: 5px auto;
+}
+
  html,
       body {
         font-family: Arial, sans-serif;
