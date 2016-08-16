@@ -16,9 +16,11 @@
 
   let auth = fb3.auth();
 
+  let LogBook = require('./logbook-model').LogBook;
+  
   let User = DS.defineResource({
     name: 'user',
-    endpoint: 'users',
+    endpoint: 'users'
   });
 
 
@@ -34,6 +36,23 @@
       return cb(err)
     })
   }
+
+  // function register(email, password, cb) {
+  //   auth.createUserWithEmailAndPassword(
+  //     email,
+  //     password
+  //   ).then(function (authData) {
+  //     User.create({ id: authData.uid, email: email}).then(function (user) {
+  //       LogBook.create(user.id, function(logbook){
+  //         user.logBookId = logbook.id;
+  //         return cb(user);
+  //       })
+  //     })
+  //   }).catch(function (err) {
+  //     return cb(err)
+  //   })
+  // }
+
 
   function login(email, password, cb) {
     auth.signInWithEmailAndPassword(email, password)
