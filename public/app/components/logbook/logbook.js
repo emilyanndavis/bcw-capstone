@@ -3,16 +3,26 @@
   angular.module('wildlife')
     .component ('logbookComponent', {
         templateUrl: 'app/components/logbook/logbook.html',
-        controller: "LogbookComponent",
+        controller: LogbookController,
         controllerAs: 'lc'
     })
 
-    function LogbookComponent() {
+    LogbookController.$inject = ['$http'];
+
+    function LogbookController($http) {
         var lc = this;
+        lc.logbook = [];
 
         lc.$onInit = function() {
-            
+            $http.get("api/species").then(function(res){
+              console.log(res.data); 
+              res.data.forEach(function(species){
+                  lc.logbook.push(species);
+              })
+          })
         }
+
+
     }
 
 
