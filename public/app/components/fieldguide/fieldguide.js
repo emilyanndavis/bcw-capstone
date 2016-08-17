@@ -10,9 +10,9 @@
       }
     })
 
-    FieldguideController.$inject = ["$http", "WildlifeService"]
+    FieldguideController.$inject = ["$http", '$state', "WildlifeService"]
 
-    function FieldguideController($http, WildlifeService){
+    function FieldguideController($http, $state, WildlifeService){
       var fc = this;
       fc.fieldguide = [];
 
@@ -24,6 +24,14 @@
       //         })
       //     })
       // }
+
+      fc.goToLogBook = function(){
+        $state.go('logBook');
+      }
+
+      fc.goToMap = function(){
+        $state.go('map');
+      }
 
       fc.$onInit = WildlifeService.getWildlife(function(res){
         fc.fieldguide = res.data
