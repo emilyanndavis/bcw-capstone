@@ -16,7 +16,7 @@
 
   let auth = fb3.auth();
 
-  let LogBook = require('./logbook-model').LogBook;
+  let LogBook = require('./logbook-model');
   
   let User = DS.defineResource({
     name: 'user',
@@ -24,34 +24,33 @@
   });
 
 
-  function register(email, password, cb) {
-    auth.createUserWithEmailAndPassword(
-      email,
-      password
-    ).then(function (authData) {
-      User.create({ id: authData.uid, email: email, img: authData.photoURL || 'http://media.mercola.com/assets/images/food-facts/banana-fb.jpg' }).then(function (user) {
-        return cb(user);
-      })
-    }).catch(function (err) {
-      return cb(err)
-    })
-  }
-
   // function register(email, password, cb) {
   //   auth.createUserWithEmailAndPassword(
   //     email,
   //     password
   //   ).then(function (authData) {
-  //     User.create({ id: authData.uid, email: email}).then(function (user) {
-  //       LogBook.create(user.id, function(logbook){
-  //         user.logBookId = logbook.id;
-  //         return cb(user);
-  //       })
+  //     User.create({ id: authData.uid, email: email, img: authData.photoURL || 'http://media.mercola.com/assets/images/food-facts/banana-fb.jpg' }).then(function (user) {
+  //       return cb(user);
   //     })
   //   }).catch(function (err) {
   //     return cb(err)
   //   })
   // }
+
+  function register(email, password, cb) {
+    auth.createUserWithEmailAndPassword(
+      email,
+      password
+    ).then(function (authData) {
+      User.create({ id: authData.uid, email: email, logBookId: authData.uid}).then(function (user) {
+        LogBook.create(user.id, function(logbook){
+          return cb(user);
+        })
+      })
+    }).catch(function (err) {
+      return cb(err)
+    })
+  }
 
 
   function login(email, password, cb) {

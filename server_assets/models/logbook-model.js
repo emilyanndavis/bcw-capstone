@@ -21,22 +21,43 @@
     });
 
     function createLogBook(userId, cb) {
-        var logBook = [];
+        let logBook = {
+            species: {}
+        };
         Species.findAll().then(function(speciesList){
             speciesList.forEach(function(species){
-                var speciesCopy = Object.assign({}, species);
-                speciesCopy.logged = false;
-                logBook.push(speciesCopy);
+                var logEntry = {
+                    speciesId: species.id,
+                    logged: false
+                }
+                logBook.species[species.id] = logEntry;
             });
             logBook.id = userId;
             LogBook.create(logBook).then(cb);
         });
     }
 
-    
+    function getAll(cb){
+        LogBook.findAll().then(cb);
+    }
+
+    function getById(id, cb){
+        LogBook.find(id).then(cb);
+    }    
+
+    function logSpecies(logBookId, speciesId, cb) {
+        LogBook.find(logBookId).then(function(logbook){
+            logbook.species[speciesId].logged = true;
+            LogBook.update(logBookId, logbook).then(cb);
+        });
+    }
+
     module.exports = {
         LogBook: LogBook,
-        create: createLogBook
+        create: createLogBook,
+        getAll: getAll,
+        getById: getById,
+        logSpecies: logSpecies
     };
 
 }());

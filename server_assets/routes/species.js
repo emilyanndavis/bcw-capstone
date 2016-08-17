@@ -21,12 +21,6 @@
             Species.create(req.body.commonName, req.body.scientificName, req.body.category, req.body.size, req.body.conservationStatus, req.body.stateProtected, req.body.description, req.body.imageUrl, function(species){
                 res.send(species);
             });
-        })
-        .put(function(req, res){
-            return {error: 'You cannot update a species at this time. Nice try, Darwin.'};            
-        })
-        .delete(function(req, res){
-            return {error: 'You cannot delete a species. What are you, a monster?'};
         });
 
     router.route('/species/type/:type')
@@ -34,16 +28,6 @@
             Species.getByCategory(req.params.type, function(species){
                 res.send(species);
             })
-        })
-        .post(function(req, res){
-            return {error: 'You cannot add to this list.'};            
-
-        })
-        .put(function(req, res){
-            return {error: 'You cannot update this list.'};            
-        })
-        .delete(function(req, res){
-            return {error: 'You cannot delete this list.'};
         });
 
     router.route('/species/size/:size')
@@ -51,16 +35,6 @@
             Species.getBySize(req.params.size, function(species){
                 res.send(species);
             })
-        })
-        .post(function(req, res){
-            return {error: 'You cannot add to this list.'};            
-
-        })
-        .put(function(req, res){
-            return {error: 'You cannot update this list.'};            
-        })
-        .delete(function(req, res){
-            return {error: 'You cannot delete this list.'};
         });  
 
     router.route('/species/name/:name')
@@ -68,16 +42,6 @@
             Species.getByName(req.params.name, function(species){
                 res.send(species);
             })
-        })
-        .post(function(req, res){
-            return {error: 'You cannot add to this list.'};            
-
-        })
-        .put(function(req, res){
-            return {error: 'You cannot update this list.'};            
-        })
-        .delete(function(req, res){
-            return {error: 'You cannot delete this list.'};
         });
         
 
