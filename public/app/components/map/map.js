@@ -39,8 +39,8 @@
             // Setup the click event listeners: simply set the map to Chicago.
             controlUI.addEventListener('click', function () {
                 // map.setCenter(chicago);
-                alert("Log Your beast!")
-                //  $state.go('logBook');
+                // alert("Log Your beast!")
+                 $state.go('sighting');
             });
 
         }
