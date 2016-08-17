@@ -16,7 +16,7 @@
     $ctrl.register = function (email, password) {
       userAuthService.setOwner(email,password);
       $ctrl.registering = true;
-      $state.go('locations')
+      $state.go('map')
     }
 
   }

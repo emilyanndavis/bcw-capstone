@@ -15,7 +15,7 @@
     this.login = function (email, password) {
       userAuthService.setOwner(email,password);
       $ctrl.loggedIn = true;
-      $state.go('locations')
+      $state.go('map')
     }
 
     this.logout = function () {
