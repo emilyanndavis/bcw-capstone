@@ -7,7 +7,8 @@
          controllerAs: 'ac',
          bindings: {
              animal: "<",
-             logging: '<'
+             logging: '<',
+             logged: '<'
          }
      })
 
