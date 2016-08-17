@@ -40,7 +40,7 @@
             controlUI.addEventListener('click', function () {
                 // map.setCenter(chicago);
                 alert("Log Your beast!")
-                // $state.go('logBook');
+                //  $state.go('logBook');
             });
 
         }
@@ -73,7 +73,8 @@
             // Setup the click event listeners: simply set the map to Chicago.
             controlUI.addEventListener('click', function () {
                 // map
-                alert("What do you see!")
+                // alert("What do you see!")
+                $state.go('fieldGuide');
             });
 
         }
@@ -106,7 +107,9 @@
             // Setup the click event listeners: simply set the map to Chicago.
             controlUI.addEventListener('click', function () {
                 // map
-                alert("What have you caught!")
+                // alert("What have you caught!")
+                $state.go('logBook');
+                
             });
 
         }
