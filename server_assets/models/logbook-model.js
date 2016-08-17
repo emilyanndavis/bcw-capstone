@@ -21,12 +21,16 @@
     });
 
     function createLogBook(userId, cb) {
-        var logBook = [];
+        let logBook = {
+            species: []
+        };
         Species.findAll().then(function(speciesList){
             speciesList.forEach(function(species){
-                var speciesCopy = Object.assign({}, species);
-                speciesCopy.logged = false;
-                logBook.push(speciesCopy);
+                var logEntry = {
+                    speciesId: species.id,
+                    logged: false
+                }
+                logBook.species.push(logEntry);
             });
             logBook.id = userId;
             LogBook.create(logBook).then(cb);
