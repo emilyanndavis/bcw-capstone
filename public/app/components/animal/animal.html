@@ -1,5 +1,5 @@
     <div>
-        <img class="modal-img" src="{{ac.animal.imageUrl}}" alt="{{ac.animal.commonName}}" ng-if="ac.logged==true" ng-click="ac.viewAnimal(ac.animal.id)">
+        <img class="modal-img" src="{{ac.animal.imageUrl}}" alt="{{ac.animal.commonName}}" ng-if="ac.logged != false" ng-click="ac.viewAnimal(ac.animal.id)">
         <img src="images/placeholder.png" alt="animal placeholder" ng-if="ac.logged==false" />
         <h3>{{ac.animal.commonName}}</h3>
         <h4>{{ac.animal.scientificName}}</h4>
