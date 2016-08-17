@@ -9,15 +9,6 @@
     text-align: center;
 }
 
-.unlogged-wildlife-card {
-    background-color: rgba(128,128,128,0.8);
-    border: 1px solid black; 
-    display: inline-block;
-    height: 350px;
-    width: 200px;
-    margin: 5px;
-    overflow: hidden;
-}
 
 .wildlife-card h3 {
     font-weight: bold;
@@ -26,6 +17,23 @@
 .wildlife-card h4 {
     font-style: italic;
 }
+
+.unlogged-wildlife-card {
+    /*background-color: rgba(128,128,128,0.5);*/
+    border: 1px solid black; 
+    display: inline-block;
+    height: 300px;
+    width: 200px;
+    margin: 5px;
+    overflow: hidden;
+    text-align: center;
+    /*position: relative;*/
+}
+
+.unlogged-wildlife-card h3 {
+    /*position: absolute;*/
+}
+
 
 .modal-img {
     height: 200px;
