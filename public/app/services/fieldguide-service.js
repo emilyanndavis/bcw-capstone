@@ -11,26 +11,23 @@
     function WildlifeService($http) {
       var ws = this;
 
-      wc.getWildlife = function(cb){
+      ws.getWildlife = function(cb){
         $http.get('/api/species').then(cb)
       }
 
-      wc.getWildlifeById = function(id, cb){
+      ws.getWildlifeById = function(id, cb){
         $http.get('/api/species/' + id).then(cb)
       }
 
-      wc.getWildlifeByType = function(type, cb){
-        //Returns an Array
+      ws.getWildlifeByType = function(type, cb){
         $http.get('/api/species/type/' + type).then(cb)
       }
 
-      wc.getWildlifeByName = function(name, cb){
-        //Returns an Array
+      ws.getWildlifeByName = function(name, cb){
         $http.get('/api/species/name/' + name).then(cb)
       }
 
-      wc.getWildlifeBySize = function(size, cb){
-        //Returns an Array
+      ws.getWildlifeBySize = function(size, cb){
         $http.get('/api/species/size/' + size).then(cb)
       }
 
