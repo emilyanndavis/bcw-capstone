@@ -5,11 +5,11 @@
         //ROUTING CONFIG
         .config(function ($stateProvider, $urlRouterProvider) {
 
-            $urlRouterProvider.otherwise('/');
+            $urlRouterProvider.otherwise('/home');
 
             $stateProvider
                 .state('home', {
-                    url: '/',
+                    url: '/home',
                     component: 'wildlife'
                 })
                 .state('map', {
@@ -18,20 +18,20 @@
                 })
                 .state('fieldGuide', {
                     url: '/fieldGuide',
-                    component: 'fieldGuideComponent'
+                    component: 'fieldguideComponent'
                 })
                     .state('fieldGuide.detail', {
                         url: '/fieldGuide/:id',
-                        component: 'fieldGuideComponent'
+                        component: 'fieldguideComponent'
                     })
 
                 .state('logBook', {
                     url: '/logBook',
-                    component: 'logBookComponent'
+                    component: 'logbookComponent'
                 })
                     .state('logBook.detail', {
                         url: '/logBook/:id',
-                        component: 'logBookComponent'
+                        component: 'logbookComponent'
                     })
 
                 .state('sighting', {
