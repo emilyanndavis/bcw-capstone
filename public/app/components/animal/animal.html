@@ -1,5 +1,6 @@
     <div>
-        <img class="modal-img" src="{{ac.animal.imageUrl}}" ng-click="ac.viewAnimal(ac.animal.id)">
+        <img class="modal-img" src="{{ac.animal.imageUrl}}" alt="{{ac.animal.commonName}}" ng-if="ac.logged==true" ng-click="ac.viewAnimal(ac.animal.id)">
+        <img src="images/placeholder.png" alt="animal placeholder" ng-if="ac.logged==false" />
         <h3>{{ac.animal.commonName}}</h3>
         <h4>{{ac.animal.scientificName}}</h4>
     </div>
@@ -10,7 +11,7 @@
         <div class="modal-content">
             <button class="btn btn-success logbtn" ng-if="ac.logging">Log it!</button>
             <span class="closebtn" ng-click="ac.closeModal()">&times</span>
-            <img src="{{ac.animal.imageUrl}}">
+            <img src="{{ac.animal.imageUrl}}" alt="{{animal.commonName}}" />
             <h3>{{ac.animal.commonName}}</h3>
             <h4>{{ac.animal.scientificName}}</h4>
             <h5>{{ac.animal.category}}</h4>
