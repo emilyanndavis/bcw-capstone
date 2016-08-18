@@ -19,7 +19,7 @@
             }
         })
         .put(function(req, res){
-            LogBook.logSpecies(req.body.logBookId, req.body.speciesId, function(logbook){
+            LogBook.logSpecies(req.body.logBookId, req.body.speciesId,req.body.location, function(logbook){
                 res.send(logbook.species[req.body.speciesId]);
             });
         });
