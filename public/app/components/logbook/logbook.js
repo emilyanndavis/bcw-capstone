@@ -7,9 +7,9 @@
         controllerAs: 'lc'
     })
 
-    LogbookController.$inject = ['$http'];
+    LogbookController.$inject = ['$http', '$state'];
 
-    function LogbookController($http) {
+    function LogbookController($http, $state) {
         var lc = this;
         lc.fieldguide = [];
         lc.logbook = {};
@@ -50,6 +50,15 @@
                 });
             });
         }
+
+      lc.goToFieldGuide = function(){
+        $state.go('fieldGuide');
+      }
+
+      lc.goToMap = function(){
+        $state.go('map');
+      }
+        
 
 
     }

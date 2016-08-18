@@ -1,3 +1,6 @@
+<button ng-click="fc.goToMap()">Back to Map</button>
+<button ng-click="fc.goToLogBook()">View Log Book</button>
+
 <div class="fieldguide">
     <div class="wildlife-card" ng-repeat="animal in fc.fieldguide">
         <animal-component animal="animal" logging=false logged=true></animal-component>
