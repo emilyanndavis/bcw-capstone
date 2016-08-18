@@ -83,3 +83,34 @@
       }
 
 
+      .landing-page {
+      text-align: center;
+      margin: 10%;
+      }
+
+      .landing-page h1 {
+          top: 20%;
+          font-size: 100px;
+          margin: 3%;
+      }
+
+      .login {
+          top: 50%;
+      }
+
+      .login-form {
+          margin-top: 5%;
+      }
+
+      .register {
+          margin-top: 5%;
+          margin-left: -5%;
+      }
+
+      .register-form {
+          margin-left: 18px;
+      }
+
+
+
+

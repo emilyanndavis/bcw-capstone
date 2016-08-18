@@ -1,9 +1,15 @@
 <div class="user-auth">
 
 <div class="login">
-<form>
-    <input type="email" placeholder="Email" ng-model="$ctrl.email"/>
-    <input type="password" placeholder="Password" ng-model="$ctrl.password"/>
+<form class="form-inline login-form">
+    <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" placeholder="Email" ng-model="$ctrl.email"/>
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" placeholder="Password" ng-model="$ctrl.password"/>
+        </div>
     <button type="submit" ng-click="$ctrl.login()">Login</button>
 </form>
 </div>
@@ -14,12 +20,16 @@
 
 <div class="registration-page" ng-if="$ctrl.registering">
     <h3>Register</h3>
-    <form ng-submit="$ctrl.register(email, password)">
-        <h5>Email</h5>
-        <input type="email" placeholder="Email" ng-model="$ctrl.email"/>
-        <h5>Password</h5>
-        <input type="password" placeholder="Password" ng-model="$ctrl.password"/>
-        <button type="submit">Register and Start Sighting!</button>
+    <form class="form-inline register-form" ng-submit="$ctrl.register(email, password)">
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" placeholder="Email" ng-model="$ctrl.email"/>
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" placeholder="Password" ng-model="$ctrl.password"/>
+        </div>
+        <button type="submit">Register</button>
     </form>
 </div>
 </div>
