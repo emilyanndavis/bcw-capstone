@@ -109,6 +109,7 @@
                 // map
                 // alert("What have you caught!")
                 $state.go('logBook');
+        
                 
             });
 
@@ -127,7 +128,6 @@
             });
                     // if(map) {google.maps.event.trigger(map, 'resize');}
               
-
 
         var logControlDiv = document.createElement('div');
         var logControl = new LogControl(logControlDiv, map);

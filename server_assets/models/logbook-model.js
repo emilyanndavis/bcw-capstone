@@ -45,9 +45,10 @@
         LogBook.find(id).then(cb);
     }    
 
-    function logSpecies(logBookId, speciesId, cb) {
+    function logSpecies(logBookId, speciesId,location, cb) {
         LogBook.find(logBookId).then(function(logbook){
             logbook.species[speciesId].logged = true;
+            logbook.species[speciesId].location = location;
             LogBook.update(logBookId, logbook).then(cb);
         });
     }
