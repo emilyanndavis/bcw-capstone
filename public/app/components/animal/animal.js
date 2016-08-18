@@ -38,7 +38,9 @@
                     lng: position.coords.longitude
                 };
                 $http.put('api/logbooks', { logBookId: '6tOKhTydfJhXOTwxvgc3Nw8Dzt92', speciesId: speciesId, location: pos }).then(function () {
-                    $state.go('logBook');
+                    $http.post('api/sightings', { sightingLocation: pos, date: 'date placeholder', speciesId: speciesId }).then(function(){
+                        $state.go('logBook');
+                    });
                 });
             });
 

@@ -25,12 +25,12 @@
         }
     });
 
-    schemator.defineSchema('Sighting', {
-        id: {type: 'string', nullable: false},
-        date: {type: 'number', nullable: false},
-        locationId: {type: 'string', nullable: false},
-        speciesId: {type: 'string', nullable: false}
-    });
+    // schemator.defineSchema('Sighting', {
+    //     id: {type: 'string', nullable: false},
+    //     date: {type: 'number', nullable: false},
+    //     locationId: {type: 'string', nullable: false},
+    //     speciesId: {type: 'string', nullable: false}
+    // });
 
     function parseQuery(query){
         if(query){
@@ -52,17 +52,17 @@
         Sighting.find(id, options).then(cb);
     }
 
-    function createSighting(locationId, speciesId, cb){
+    function createSighting(location, date, speciesId, cb){
         let sighting = {
             id: uuid.v1(),
-            date: Date.now(),
-            locationId: locationId,
+            date: date,
+            sightingLocation: location,
             speciesId: speciesId
         };
-        let error = schemator.validateSync('Sighting', sighting);
-        if (error){
-            return cb(error);
-        }
+        // let error = schemator.validateSync('Sighting', sighting);
+        // if (error){
+        //     return cb(error);
+        // }
         Sighting.create(sighting).then(cb);             
     }
 

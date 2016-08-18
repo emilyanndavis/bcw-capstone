@@ -18,10 +18,11 @@
             }
         })
         .post(function(req, res){
-            Sighting.create(req.body.locationId, req.body.speciesId, function(sighting){
-                Sighting.log(sighting.id, function(loggedSighting){
-                    res.send(loggedSighting);
-                });
+            Sighting.create(req.body.sightingLocation, req.body.date, req.body.speciesId, function(sighting){
+                // Sighting.log(sighting.id, function(loggedSighting){
+                //     res.send(loggedSighting);
+                // });
+                res.send(sighting);
             });
         })
         .put(function(req, res){
