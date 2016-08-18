@@ -19,9 +19,7 @@
             $ctrl.search = function(){
                 let baseUrl = 'api/species/name/'
                 $http.get(baseUrl + $ctrl.query).then(function(res){
-                    console.log(res.data.length);
                     res.data.forEach(function(match){
-                        console.log(match.commonName);
                         $ctrl.results.push(match);
                     });
                 });
@@ -35,16 +33,12 @@
                 $http.get(baseUrl + type).then(function(res){
                     let typeMatches = res.data;
                     let sizeMatches = [];
-                    // console.log(typeMatches.length);
                     typeMatches.forEach(function(species){
-                        // console.log(species.commonName);
                         if (species.size.toLowerCase() == size.toLowerCase()){
                             sizeMatches.push(species);
                         }                    
                     });
-                    console.log(`Number of matches for ${size} ${type}s: ${sizeMatches.length}`);
                     sizeMatches.forEach(function(species){
-                        console.log(species.commonName);
                         $ctrl.results.push(species);    
                     });
                 });
