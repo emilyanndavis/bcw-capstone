@@ -13,8 +13,8 @@
         var $ctrl = this;
         $ctrl.sightings = [];
         $ctrl.markers = [];
-
-/*MAP BUTTON CONSTRUCTORS CREATED PER GOOGLE.  CAN'T SAY I'M A FAN. HAS TO BE A BETTER WAY. THESE ARE CALLED DOWN IN THE MAP INITIALIZATION*/
+        $ctrl.creatureData = [];
+        /*MAP BUTTON CONSTRUCTORS CREATED PER GOOGLE.  CAN'T SAY I'M A FAN. HAS TO BE A BETTER WAY. THESE ARE CALLED DOWN IN THE MAP INITIALIZATION*/
         function LogControl(controlDiv, map) {
             // Set CSS for the control border.
             var controlUI = document.createElement('div');
@@ -45,7 +45,7 @@
         }
 
         function FieldGuideControl(controlDiv, map) {
-           
+
             var controlUI = document.createElement('div');
             controlUI.style.backgroundColor = '#fff';
             controlUI.style.border = '2px solid #fff';
@@ -68,7 +68,7 @@
             controlUI.appendChild(controlText);
 
             controlUI.addEventListener('click', function () {
-             $state.go('fieldGuide');
+                $state.go('fieldGuide');
             });
         }
 
@@ -97,32 +97,49 @@
 
             controlUI.addEventListener('click', function () {
                 $state.go('logBook');
+
             });
         }
 
-/*BEGIN MAP*/
+        /*BEGIN MAP*/
         Initializer.mapsInitialized.
             then(function () {
 
-                $http.get("api/sightings").then(function (res) {
-                    $ctrl.sightings = res.data
-                    /*ONCE SIGHTINGS ARRAY IS POPULATED, RETRIEVE DATA TO POPULATE MARKER OBJECT*/
-                    $ctrl.createMarkerData();
-                })
-
                 /*WINDOW VARIABLE CREATED. FOR MARKER ON CLICK*/
                 var largeInfowindow = new google.maps.InfoWindow();
-
+                
                 /*MAP INITIALIZATION*/
-                var map = new google.maps.Map(document.getElementById('map'), {
+                map = new google.maps.Map(document.getElementById('map'), {
                     center: { lat: 43.639056, lng: -116.195673 },
-                    zoom: 17,
+                    zoom: 12,
                     // styles: styles,
                     mapTypeControl: false,
                 });
 
-               /*BEGIN CREATING THE CONTROL BUTTONS*/
+                /*GATHER WILDLIFE DATA AND PLACE IN OR RETIRIEVE FROM LOCALSTORAGE*/
+                function goGetWildLife() {
+                    console.log('getting data')
+                    var data = localStorage.getItem('creatureData');
+                    if (data) {
+                        $ctrl.creatureData = JSON.parse(data)
+                    }
+                    WildlifeService.getWildlife(function (res) {
+                        $ctrl.creatureData = res.data
+                        localStorage.setItem('creatureData', JSON.stringify($ctrl.creatureData))                    
+                    })
+                }
+                goGetWildLife()
 
+
+                $http.get("api/sightings").then(function (res) {
+                    $ctrl.sightings = res.data
+                    /*ONCE SIGHTINGS ARRAY IS POPULATED, RETRIEVE DATA TO POPULATE MARKER OBJECT*/
+                    $ctrl.createMarkerData()
+                })
+
+
+
+                /*BEGIN CREATING THE CONTROL BUTTONS*/
                 var logControlDiv = document.createElement('div');
                 var logControl = new LogControl(logControlDiv, map);
                 logControlDiv.index = 1;
@@ -139,12 +156,11 @@
                 var logBookControl = new LogBookControl(logBookControlDiv, map);
                 logBookControlDiv.index = 1;
                 map.controls[google.maps.ControlPosition.RIGHT_TOP].push(logBookControlDiv);
-
                 /*END BUTTONS*/
 
 
-                 /*INFO WINDOW FOR CURRENT USER POSITION
-                   GEO LOCATION ESTABLISHED*/
+                /*INFO WINDOW FOR CURRENT USER POSITION
+                  GEO LOCATION ESTABLISHED*/
                 var infoWindow = new google.maps.InfoWindow({ map: map });
                 if (navigator.geolocation) {
                     navigator.geolocation.getCurrentPosition(function (position) {
@@ -153,7 +169,7 @@
                             lng: position.coords.longitude
                         };
                         infoWindow.setPosition(pos);
-                        infoWindow.setContent(`<div><h1>${'You Are Here!'}</h1><p>Latitude: ${pos.lat}</p><p>Longitude: ${pos.lng}</div>`);
+                        infoWindow.setContent(`<div><h4>${'You Are Here!'}</h4 ><p>Latitude: ${pos.lat}</p><p>Longitude: ${pos.lng}</div>`);
                         map.setCenter(pos);
                     }, function () {
                         handleLocationError(true, infoWindow, map.getCenter());
@@ -163,46 +179,46 @@
                     handleLocationError(false, infoWindow, map.getCenter());
                 }
 
-
+                /*MATCH SIGHTING ID WITH FIELDGUIDE ID TO UPDATE SIGHTING OBJECT WITH IMAGE AND TITLE*/
                 $ctrl.createMarkerData = function () {
                     for (var i = 0; i < $ctrl.sightings.length; i++) {
                         var sighting = $ctrl.sightings[i];
-                        var id = i
-                        var position = sighting.sightingLocation;
-                
-                        WildlifeService.getWildlifeById(sighting.speciesId, function (res) {
-                            var title = res.data.commonName;
-                            var img = res.data.imageUrl
-                            // console.log(res.data)
-                            /*ONCE ANIMAL DATA IS RETRIEVED CREATE MARKER*/
-                            createMarker(position, title, img, id)
-                        })
+                        for (var j = 0; j < $ctrl.creatureData.length; j++) {
+                            var creature = $ctrl.creatureData[j];
+                            if (sighting.speciesId == creature.id) {
+                                sighting.title = creature.commonName
+                                sighting.img = creature.imageUrl
+                            }
+                        }
                     }
+                    $ctrl.createMarker();
                 }
 
-                function createMarker(pos, title, img, i) {
-                    var marker = new google.maps.Marker({
-                        position: pos,
-                        title: title,
-                        img: img,
-                        animation: google.maps.Animation.DROP,
-                        id: i
-
-                    });
-                    // Push the marker to our array of markers.
-                    $ctrl.markers.push(marker);
-                    console.log($ctrl.markers)
-                    // Create an onclick event to open an infowindow at each marker.
-                    marker.addListener('click', function (e) {
-                        populateInfoWindow(this, largeInfowindow);
-                    });
-                    if($ctrl.markers.length == $ctrl.sightings.length){
-                        /*ONCE MARKERS ARRAY IS FULL, DISPLAY MARKERS*/
-                    showMarker();
+                /*CREATE AND STORE MARKERS*/
+                $ctrl.createMarker = function (pos) {
+                    for (var i = 0; i < $ctrl.sightings.length; i++) {
+                        var animal = $ctrl.sightings[i];
+                        console.log(animal)
+                        var marker = new google.maps.Marker({
+                            position: animal.sightingLocation,
+                            title: animal.title,
+                            img: animal.img,
+                            // map: map,
+                            animation: google.maps.Animation.DROP,
+                            id: i
+                        });
+                        // Push the marker to our array of markers.
+                        $ctrl.markers.push(marker);
+                        // Create an onclick event to open an infowindow at each marker.
+                        marker.addListener('click', function (e) {
+                            populateInfoWindow(this, largeInfowindow);
+                        });
                     }
+                    showMarker()
                 }
 
-                       function showMarker() {
+                /*BOUNDS DO NOT YET WORK*/
+                function showMarker() {
                     // var bounds = new google.maps.LatLngBounds();
                     // Extend the boundaries of the map for each marker and display the marker
                     for (var i = 0; i < $ctrl.markers.length; i++) {
