@@ -33,20 +33,19 @@
         // hard-coded logBookId for testing. should be retrieved dynamically based on user data.
         ac.logSighting = function (speciesId) {
             navigator.geolocation.getCurrentPosition(function (position) {
+                debugger;
                 var pos = {
                     lat: position.coords.latitude,
                     lng: position.coords.longitude
                 };
+                
                 $http.put('api/logbooks', { logBookId: '6tOKhTydfJhXOTwxvgc3Nw8Dzt92', speciesId: speciesId, location: pos }).then(function () {
-                    $http.post('api/sightings', { sightingLocation: pos, date: 'date placeholder', speciesId: speciesId }).then(function(){
+                    $http.post('api/sightings', { sightingLocation: pos, date: position.timestamp, speciesId: speciesId }).then(function(){
                         $state.go('logBook');
                     });
                 });
             });
-
-
         }
-
     }
 } ());
 
