@@ -16,6 +16,7 @@
       }
 
       ws.getWildlifeById = function(id, cb){
+        
         $http.get('/api/species/' + id).then(cb)
       }
 

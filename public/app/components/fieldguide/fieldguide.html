@@ -1,9 +1,14 @@
+<<<<<<< HEAD
 <button ng-click="fc.goToMap()">Back to Map</button>
 <button ng-click="fc.goToLogBook()">View Log Book</button>
 <form>
     <input type="text" placeholder="Search" ng-model="fc.query"/>
     <button ng-click="fc.search()">Find It!</button>
 </form>
+=======
+<button class="btn btn-primary" ng-click="fc.goToMap()">Back to Map</button>
+<button class="btn btn-success" ng-click="fc.goToLogBook()">View Log Book</button>
+>>>>>>> 9d2c580d349ad42b380e8daa293cee67d02ae9c6
 
 <div class="fieldguide" ng-if="fc.results.length == 0">
     <div class="wildlife-card" ng-repeat="animal in fc.fieldguide">

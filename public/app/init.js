@@ -10,7 +10,7 @@
             $stateProvider
                 .state('home', {
                     url: '/home',
-                    component: 'wildlife'
+                    component: 'landingPageComponent'
                 })
                 .state('map', {
                     url: '/map',
