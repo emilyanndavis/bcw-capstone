@@ -1,37 +1,28 @@
-<div class="user-auth">
-
-<div class="login">
-<form class="form-inline login-form">
-    <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" placeholder="Email" ng-model="$ctrl.email"/>
-        </div>
-        <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" placeholder="Password" ng-model="$ctrl.password"/>
-        </div>
-    <button type="submit" ng-click="$ctrl.login()">Login</button>
-</form>
-</div>
-
-<div class="register" ng-if="$ctrl.landingPage">
-    <button ng-click="$ctrl.registering = !$ctrl.registering; $ctrl.landingPage = !$ctrl.landingPage">Register</button>
-</div>
-
-<div class="registration-page" ng-if="$ctrl.registering">
-    <h3>Register</h3>
-    <form class="form-inline register-form" ng-submit="$ctrl.register(email, password)">
-        <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" placeholder="Email" ng-model="$ctrl.email"/>
-        </div>
-        <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" placeholder="Password" ng-model="$ctrl.password"/>
-        </div>
-        <button type="submit">Register</button>
-    </form>
-</div>
-</div>
-
 <button ng-if="$ctrl.loggedIn" ng-click="$ctrl.logout()">Logout</button>
+<div class="auth-box">
+    <div class="greeting">
+        <p>Ready to Start Your Adventure?</p>
+        <p>Login or Register Below!</p>
+    </div>
+    <div class="user-auth">
+    <div class="login" ng-if="$ctrl.login">
+        <form class="login-form">
+                <input type="email" placeholder="Email" ng-model="$ctrl.email"/>
+                <input type="password" placeholder="Password" ng-model="$ctrl.password"/>
+        </form>
+                <button class="landing-button" type="submit" ng-click="$ctrl.login()">Login</button>
+    </div>
+
+    <div class="register" ng-if="$ctrl.landingPage">
+        <button class="landing-button" ng-click="$ctrl.registering = !$ctrl.registering; $ctrl.landingPage = !$ctrl.landingPage; $ctrl.login=false">Register</button>
+    </div>
+
+    <div class="registration-page" ng-if="$ctrl.registering">
+        <form class="register-form" ng-submit="$ctrl.register(email, password)">
+                <input type="email" placeholder="Email" ng-model="$ctrl.email"/>
+                <input type="password" placeholder="Password" ng-model="$ctrl.password"/>
+        </form>
+                <button class="landing-button" type="submit">Register</button>
+    </div>
+    </div>
+</div>

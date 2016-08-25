@@ -14,6 +14,7 @@
     // $ctrl.loggedIn = UserAuthService.getUser();
     
     $ctrl.landingPage = true;
+    $ctrl.login = true;
     $ctrl.registering = false;
 
     $ctrl.login = function (email, password) {

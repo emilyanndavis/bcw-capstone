@@ -1,8 +1,16 @@
 <button class="btn btn-primary" ng-click="fc.goToMap()">Back to Map</button>
 <button class="btn btn-success" ng-click="fc.goToLogBook()">View Log Book</button>
+<form>
+    <input type="text" placeholder="Search" ng-model="fc.query"/>
+    <button class="btn btn-info" ng-click="fc.search()">Find It!</button>
+</form>
 
-<div class="fieldguide">
+<div class="fieldguide" ng-if="fc.results.length == 0">
     <div class="wildlife-card" ng-repeat="animal in fc.fieldguide">
         <animal-component animal="animal" logging=false logged=true></animal-component>
     </div>
 </div> 
+
+<div class="wildlife-card" ng-if="fc.results.length !== 0" ng-repeat="animal in fc.results">
+    <animal-component animal="animal" logging=false logged=true></animal-component>
+</div>
