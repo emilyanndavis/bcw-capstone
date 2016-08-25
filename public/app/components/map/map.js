@@ -107,7 +107,7 @@
 
                 /*WINDOW VARIABLE CREATED. FOR MARKER ON CLICK*/
                 var largeInfowindow = new google.maps.InfoWindow();
-                
+
                 /*MAP INITIALIZATION*/
                 map = new google.maps.Map(document.getElementById('map'), {
                     center: { lat: 43.639056, lng: -116.195673 },
@@ -125,7 +125,7 @@
                     }
                     WildlifeService.getWildlife(function (res) {
                         $ctrl.creatureData = res.data
-                        localStorage.setItem('creatureData', JSON.stringify($ctrl.creatureData))                    
+                        localStorage.setItem('creatureData', JSON.stringify($ctrl.creatureData))
                     })
                 }
                 goGetWildLife()
@@ -188,6 +188,7 @@
                             if (sighting.speciesId == creature.id) {
                                 sighting.title = creature.commonName
                                 sighting.img = creature.imageUrl
+                        
                             }
                         }
                     }
@@ -195,7 +196,7 @@
                 }
 
                 /*CREATE AND STORE MARKERS*/
-                $ctrl.createMarker = function (pos) {
+                $ctrl.createMarker = function () {
                     for (var i = 0; i < $ctrl.sightings.length; i++) {
                         var animal = $ctrl.sightings[i];
                         console.log(animal)
@@ -203,7 +204,7 @@
                             position: animal.sightingLocation,
                             title: animal.title,
                             img: animal.img,
-                            // map: map,
+                            when: animal.date,
                             animation: google.maps.Animation.DROP,
                             id: i
                         });
@@ -232,13 +233,18 @@
                     // Check to make sure the infowindow is not already opened on this marker.
                     if (infowindow.marker != marker) {
                         infowindow.marker = marker;
-                        infowindow.setContent(`<div><img src=${marker.img} width = '100px'><h2>${marker.title}</h2><p>${marker.position}</p></div>`);
+                        infowindow.setContent(`<div><img src=${marker.img} width = '100px'><h2>${marker.title}</h2><p>${marker.position}</p><p>${logDate(marker.when)}</p></div>`);
                         infowindow.open(map, marker);
                         // Make sure the marker property is cleared if the infowindow is closed.
                         infowindow.addListener('closeclick', function () {
                             infowindow.marker = null;
                         });
                     }
+                }
+                function logDate(timestamp) {
+                    
+                    var myDate = new Date(timestamp);
+                    return(myDate.toGMTString());
                 }
             });
 
