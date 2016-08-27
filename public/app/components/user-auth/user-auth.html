@@ -18,7 +18,7 @@
     </div>
 
     <div class="registration-page" ng-if="$ctrl.registering">
-        <form class="register-form" ng-submit="$ctrl.register(email, password)">
+        <form class="register-form" ng-submit="$ctrl.register($ctrl.email, $ctrl.password)">
                 <input type="email" placeholder="Email" ng-model="$ctrl.email"/>
                 <input type="password" placeholder="Password" ng-model="$ctrl.password"/>
         </form>
