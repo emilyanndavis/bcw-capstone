@@ -44,6 +44,7 @@
     ).then(function (authData) {
       User.create({ id: authData.uid, email: email, logBookId: authData.uid}).then(function (user) {
         LogBook.create(user.id, function(logbook){
+          user.logbook = logbook;
           return cb(user);
         })
       })
@@ -57,7 +58,10 @@
     auth.signInWithEmailAndPassword(email, password)
       .then(function (authData) {
         User.find(authData.uid).then(function (user) {
-          return cb(user);
+          LogBook.find(user.id).then(function(logbook){
+            user.logbook = logbook;
+            return cb(user);
+          })
         })
       }).catch(function (err) {
         return cb(err);

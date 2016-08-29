@@ -6,33 +6,33 @@
       controller: UserAuthController
     })
 
-    UserAuthController.$inject = ['$state'];
+    UserAuthController.$inject = ['$state', 'UserAuthService'];
     
 
-  function UserAuthController($state) {
+  function UserAuthController($state, UserAuthService) {
     var $ctrl = this;
-    // $ctrl.loggedIn = UserAuthService.getUser();
+    $ctrl.loggedIn = UserAuthService.getUser();
     
     $ctrl.landingPage = true;
     $ctrl.login = true;
     $ctrl.registering = false;
 
-    $ctrl.login = function (email, password) {
-    //   UserAuthService.setUser(email,password);
+    $ctrl.login = function (user) {
+      UserAuthService.login(user);
       $ctrl.loggedIn = true;
-      $state.go('map')
+      // $state.go('map')
     }
     
     $ctrl.logout = function () {
-    //   UserAuthService.logout();
+      UserAuthService.logout();
       $ctrl.loggedIn = false;
       $state.go('home')
     }
 
 
-    $ctrl.register = function (email, password) {
-    //   UserAuthService.saveUser(email,password);
-      $state.go('map')
+    $ctrl.register = function (user) {
+      UserAuthService.register(user);
+      // $state.go('map')
     }
   }
 

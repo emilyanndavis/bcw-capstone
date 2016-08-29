@@ -19,9 +19,11 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.15.2",
+    "connect-nedb-session": "0.0.3",
     "cors": "^2.7.1",
     "dom-storage": "^2.0.2",
     "express": "^4.14.0",
+    "express-session": "^1.14.1",
     "faye-websocket": "^0.11.0",
     "firebase": "^2.4.2",
     "js-data": "^2.9.0",

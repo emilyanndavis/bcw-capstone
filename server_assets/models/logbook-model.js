@@ -42,8 +42,8 @@
     }
 
     function getById(id, cb){
-        LogBook.find(id).then(cb);
-    }    
+        LogBook.find({}, {where: {userId: id}}).then(cb);
+    }
 
     function logSpecies(logBookId, speciesId,location, cb) {
         LogBook.find(logBookId).then(function(logbook){
