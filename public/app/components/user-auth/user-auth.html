@@ -6,11 +6,11 @@
     </div>
     <div class="user-auth">
     <div class="login" ng-if="$ctrl.login">
-        <form class="login-form">
-                <input type="email" placeholder="Email" ng-model="$ctrl.email"/>
-                <input type="password" placeholder="Password" ng-model="$ctrl.password"/>
+        <form class="login-form" ng-submit="$ctrl.login($ctrl.user)">
+                <input type="email" placeholder="Email" ng-model="$ctrl.user.email"/>
+                <input type="password" placeholder="Password" ng-model="$ctrl.user.password"/>
+                <button class="landing-button" type="submit">Login</button>
         </form>
-                <button class="landing-button" type="submit" ng-click="$ctrl.login()">Login</button>
     </div>
 
     <div class="register" ng-if="$ctrl.landingPage">
@@ -18,11 +18,11 @@
     </div>
 
     <div class="registration-page" ng-if="$ctrl.registering">
-        <form class="register-form" ng-submit="$ctrl.register($ctrl.email, $ctrl.password)">
-                <input type="email" placeholder="Email" ng-model="$ctrl.email"/>
-                <input type="password" placeholder="Password" ng-model="$ctrl.password"/>
-        </form>
+        <form class="register-form" ng-submit="$ctrl.register($ctrl.user)">
+                <input type="email" placeholder="Email" ng-model="$ctrl.user.email"/>
+                <input type="password" placeholder="Password" ng-model="$ctrl.user.password"/>
                 <button class="landing-button" type="submit">Register</button>
+        </form>
     </div>
     </div>
 </div>
