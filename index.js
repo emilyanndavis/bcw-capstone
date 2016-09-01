@@ -13,6 +13,7 @@
     server.use(sessions);
 
     server.use('/', express.static(`${__dirname}/public`));
+    server.use('/', express.static(`${__dirname}/bower_components`));
 
     server.use('/api', routes.router);
 

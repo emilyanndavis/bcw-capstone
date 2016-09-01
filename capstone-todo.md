@@ -13,10 +13,11 @@
   - [] And don't forget a 'clear filter' button to return to full display
 
 - Log a sighting route:
-  - [] Add heading to search results (e.g., "showing medium birds" or "showing matches for squirrel")
+  - [x] Add heading to search results (e.g., "showing medium birds" or "showing matches for squirrel")
 
-- Map:
-  - [] Add date/time (in human-readable format) to map marker info window
+- Map: 
+  - [] Add custom marker for user location. Circle around marker.
+  - [x] Add date/time (in human-readable format) to map marker info window
   - [] Show only most recent sightings (last 30 days? 7 days? Options for both? Maybe just the last 50 or some other arbitrary number?)
   - [] Add option to filter by animal/animal type?
   - [] Only display markers that are nearby (use geofire?)
@@ -59,7 +60,8 @@
 
 ## Front End
 
-- [] Build Loading Screen
+- [] Build Welcome screen
+- [] Spinner for FieldGuide 
 - [x] Build Home Screen w/ Map (centered on current location) & Main Menu
 - [x] Build 'Log a Sighting' UI
 - [] Build Choose a Trail UI

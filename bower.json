@@ -1,0 +1,33 @@
+{
+  "name": "wildlife",
+  "description": "BCW Capstone Project, Summer 2016",
+  "main": "index.js",
+  "authors": [
+    "Lindy Crain",
+    "Emily Davis",
+    "Kurt Hammes",
+    "Davis Plumlee"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "wildlife",
+    "birding",
+    "trails",
+    "hiking",
+    "boise",
+    "idaho",
+    "pokemon",
+    "IRL"
+  ],
+  "homepage": "https://github.com/emilyanndavis/bcw-capstone",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "map-icons": "^3.0.0"
+  }
+}
