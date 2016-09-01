@@ -7,16 +7,16 @@
 
   router.route('/users/register')
     .post(function (req, res) {
-      User.register(req.body.email, req.body.password, function (user) {
-        req.session.authToken = user.authToken;
+      User.register(req.body.email, req.body.password, function (user, token) {
+        req.session.authToken = token;
         res.send(user);
       });
     })
 
   router.route('/users/login')
     .post(function (req, res) {
-      User.login(req.body.email, req.body.password, function (user) {
-        req.session.authToken = user.authToken;
+      User.login(req.body.email, req.body.password, function (user, token) {
+        req.session.authToken = token;
         res.send(user);
       });
     })
@@ -24,8 +24,11 @@
   router.route('/user')
     .get(function (req, res) {
       if(!req.session.authToken){
-        return res.redirect('/#/login');
+        res.send({error: 'No Auth'})
       }
-
+      User.login(req.session.authToken.email, req.session.authToken.password, function (user, token) {
+        req.session.authToken = token;
+        return res.send(user);
+      });
     })
 } ());

@@ -1,5 +1,5 @@
 <button ng-if="$ctrl.loggedIn" ng-click="$ctrl.logout()">Logout</button>
-<div class="auth-box">
+<div class="auth-box" ng-if="!$ctrl.user">
     <div class="greeting">
         <p>Ready to Start Your Adventure?</p>
         <p>Login or Register Below!</p>

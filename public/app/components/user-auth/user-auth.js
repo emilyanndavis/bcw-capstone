@@ -11,16 +11,20 @@
 
   function UserAuthController($state, UserAuthService) {
     var $ctrl = this;
-    $ctrl.loggedIn = UserAuthService.getUser();
+    UserAuthService.getUser(function(user){
+      $ctrl.loggedIn = true;
+      $ctrl.user = user;
+
+    });
     
     $ctrl.landingPage = true;
     $ctrl.login = true;
     $ctrl.registering = false;
 
     $ctrl.login = function (user) {
-      UserAuthService.login(user);
-      $ctrl.loggedIn = true;
-      // $state.go('map')
+      UserAuthService.login(user).then(function(){
+        $state.go('map')
+      });;
     }
     
     $ctrl.logout = function () {
@@ -31,8 +35,9 @@
 
 
     $ctrl.register = function (user) {
-      UserAuthService.register(user);
-      // $state.go('map')
+      UserAuthService.register(user).then(function(){
+        $state.go('map')
+      });
     }
   }
 
